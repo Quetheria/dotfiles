@@ -114,16 +114,9 @@
     linux-manual
     man-pages
     pciutils
-    
-    # Sway stuff
-    grim # screenshot 
-    slurp # screenshot 
-    wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
-    mako # notification system developed by swaywm maintainer
     light
     xdg-desktop-portal
     xdg-desktop-portal-wlr
-    xwayland
   ];
 specialisation = {
     xorg.configuration = { 
@@ -136,6 +129,15 @@ specialisation = {
         };
     };
     wayland.configuration = {
+
+        
+        environment.systemPackages = with pkgs; [
+            grim # screenshot 
+            slurp # screenshot 
+            mako # notification system developed by swaywm maintainer
+            wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
+            xwayland
+        ];
         #sway
         programs.sway = {
             enable = true;
