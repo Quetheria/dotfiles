@@ -51,6 +51,8 @@
   virtualisation.waydroid.enable = true;
   virtualisation.docker.enable = true;
   virtualisation.virtualbox.host.enable = true;
+  users.extraGroups.vboxusers.members = [ "cessna" ];
+    
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
@@ -95,6 +97,7 @@
     
     flameshot
     powerline
+    powerline-fonts
     ];
   };
 
@@ -116,6 +119,7 @@
     pciutils
     light
     xdg-desktop-portal
+    wine
     xdg-desktop-portal-wlr
   ];
 specialisation = {
@@ -218,7 +222,17 @@ specialisation = {
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
+  # obs kernel settings
+  boot.extraModulePackages = with config.boot.kernelPackages; [
+        v4l2loopback
+  ];
+  boot.kernelModules = [ "v4l2loopback" ];
+  boot.extraModprobeConfig = ''
+    options v4l2loopback devices=1 video_nr=1 card_label="OBS Cam" exclusive_caps=1
+  '';
   boot.resumeDevice = "/dev/sda2";
+  security.polkit.enable = true;
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
