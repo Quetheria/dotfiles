@@ -224,15 +224,28 @@ specialisation = {
   
   services.tailscale.enable = true;
   # tailscale
-  networking.nameservers = ["100.100.100.100" "1.1.1.1" "8.8.8.8" ];
+  networking.nameservers = ["100.100.100.100" "1.1.1.1" "1.0.0.1" ];
   networking.search = ["tailaba8fe.ts.net"];
 
-
+  networking.useNetworkd = true;
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [ 23323 ];
+  networking.useDHCP = false;
+  networking.interfaces.wlp2s0.useDHCP = false; 
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
+
+  services.resolved = {
+    enable = true;
+    dnssec = "true";
+    domains = [ "~." ];
+    fallbackDns = [
+      "1.1.1.1"
+      "1.0.0.1"
+    ];
+    dnsovertls = "true";
+  };
 
   # obs kernel settings
   boot.extraModulePackages = with config.boot.kernelPackages; [
