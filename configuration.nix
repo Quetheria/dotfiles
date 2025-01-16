@@ -1,10 +1,12 @@
 # Edit this configuration file to define what should be installed on
+
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, lib, ... }:
 
 {
+
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
@@ -52,7 +54,6 @@
   virtualisation.docker.enable = true;
   virtualisation.virtualbox.host.enable = true;
   users.extraGroups.vboxusers.members = [ "cessna" ];
-    
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
@@ -75,12 +76,13 @@
     # no need to redefine it in your config for now)
     #media-session.enable = true;
   };
-	
+
+
   # bluetooth stuff
   hardware.bluetooth.enable = true;
 
   # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true; 
+  # services.xserver.libinput.enable = true;
   programs.fish.enable = true;  
   users.users.cessna = {
     isNormalUser = true;
@@ -141,6 +143,7 @@ specialisation = {
             mako # notification system developed by swaywm maintainer
             wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
             xwayland
+            wl-mirror
         ];
         #sway
         programs.sway = {
@@ -216,6 +219,15 @@ specialisation = {
     		PermitRootLogin = "prohibit-password"; # "yes", "without-password", "prohibit-password", "forced-commands-only", "no"
   	};
   };
+
+
+  
+  services.tailscale.enable = true;
+  # tailscale
+  networking.nameservers = ["100.100.100.100" "1.1.1.1" "8.8.8.8" ];
+  networking.search = ["tailaba8fe.ts.net"];
+
+
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [ 23323 ];
   # networking.firewall.allowedUDPPorts = [ ... ];
