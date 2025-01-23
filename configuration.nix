@@ -91,13 +91,9 @@
     shell = pkgs.fish;
     packages = with pkgs; [
     fish
-    firefox
-    neovim
     ripgrep
-    hugo
-    obsidian
-    
-    flameshot
+
+    (flameshot.override { enableWlrSupport = true; })
     powerline
     powerline-fonts
     ];
@@ -111,7 +107,7 @@
 
 
   environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
     openssh
     wireshark
@@ -144,6 +140,7 @@ specialisation = {
             wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
             xwayland
             wl-mirror
+            alacritty
         ];
         #sway
         programs.sway = {
