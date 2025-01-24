@@ -83,6 +83,7 @@
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
+
   programs.fish.enable = true;  
   users.users.cessna = {
     isNormalUser = true;
@@ -93,11 +94,14 @@
     fish
     ripgrep
     vesktop
-    flameshot.override { enableWlrSupport = true; }
+    (flameshot.overrideAttrs (finalAttrs: { enableWlrSupport = true; }))
     powerline
     powerline-fonts
+    wine
     ];
   };
+
+
 
   # Install firefox.
   programs.firefox.enable = true;
@@ -117,7 +121,6 @@
     pciutils
     light
     xdg-desktop-portal
-    wine
     xdg-desktop-portal-wlr
   ];
 specialisation = {
