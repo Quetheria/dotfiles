@@ -92,8 +92,8 @@
     packages = with pkgs; [
     fish
     ripgrep
-
-    (flameshot.override { enableWlrSupport = true; })
+    vesktop
+    flameshot.override { enableWlrSupport = true; }
     powerline
     powerline-fonts
     ];
