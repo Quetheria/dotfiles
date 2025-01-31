@@ -1,19 +1,17 @@
-{config, osConfig, pkgs, options, ... }:
-
 {
-        
-    programs.vesktop.enable = true;
+  config,
+  osConfig,
+  pkgs,
+  options,
+  ...
+}: {
+  programs.vesktop.enable = true;
 
+  # let
+  #        veskDir = "${osConfig.dotfiles.assetDir}/vesktop";
+  # in  {
 
-   # let 
-#        veskDir = "${osConfig.dotfiles.assetDir}/vesktop";
-   # in  {
+  # TODO see if we can manage vesktop config with this
 
-      # TODO see if we can manage vesktop config with this 
-           
-
-    #};
-
+  #};
 }
-
-

@@ -1,12 +1,14 @@
-{config, pkgs, lib, inputs, ... }:
-
-
-
-{ imports = 
-  [
+{
+  config,
+  pkgs,
+  lib,
+  inputs,
+  ...
+}: {
+  imports = [
     ./hardware-configuration.nix
     # tailscale, ssh some nm config switches
-    ./networking.nix    
+    ./networking.nix
     # bluetooth + alsa
     ./sound.nix
     # docker virtualbox, etc
@@ -15,10 +17,5 @@
     # lower level things grub etc + random config suff
     ./boot-etc.nix
     ./options.nix
-
   ];
-  
-
-
-
 }
