@@ -9,27 +9,27 @@ let
   inherit (builtins) toString;
   inherit (lib) mkIf types findFirst pathExists removePrefix;
 in {
-  nix = {
+  config.nix = {
     settings = {
-      experimental-features = mkDefault "nix-command flakes";
-      auto-optimise-store = mkDefault true;
+      experimental-features = lib.mkDefault "nix-command flakes";
+      auto-optimise-store = lib.mkDefault true;
     };
   };
-  nixpkgs = {
+  config.nixpkgs = {
     hostPlatform.system = "x86_64-linux";
   };
 
   options = {
     dotfiles = {
-      dir = mkOption types.path (removePrefix "/mnt"
+      dir = lib.mkOption types.path (removePrefix "/mnt"
         (findFirst pathExists (toString ../../.) [
           "/mnt/etc/dotfiles"
           "/etc/dotfiles"
           "/home/cessna/dotfiles"
         ])) "Directory of the dotfiles";
-      assetDir = mkOption types.path "${config.dotfiles.dir}/home/assets" "Path to Assets";
-      scriptDir = mkOption types.path "${config.dotfiles.dir}/home/assets/scripts" "Path to scripts";
-      imagesDir = mkOption types.path "${config.dotfiles.dir}/home/assets/images" "Path to images";
+      assetDir = lib.mkOption types.path "${config.dotfiles.dir}/home/assets" "Path to Assets";
+      scriptDir = lib.mkOption types.path "${config.dotfiles.dir}/home/assets/scripts" "Path to scripts";
+      imagesDir = lib.mkOption types.path "${config.dotfiles.dir}/home/assets/images" "Path to images";
     };
   };
 }
