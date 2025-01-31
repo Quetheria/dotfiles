@@ -138,7 +138,7 @@ specialisation = {
         
         environment.systemPackages = with pkgs; [
             grim # screenshot 
-            slurp # screenshot 
+ cffcff           slurp # screenshot 
             mako # notification system developed by swaywm maintainer
             wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
             xwayland

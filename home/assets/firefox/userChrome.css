@@ -1,0 +1,19 @@
+/* hides the title bar */
+#titlebar {
+  visibility: collapse;
+}
+
+/* hides the sidebar */
+#sidebar-header {
+  visibility: collapse !important;
+
+} 
+
+/* hides the native tabs */
+#TabsToolbar {
+  visibility: collapse;
+}
+/* leaves space for the window buttons */
+#nav-bar {
+    margin-bottom: -4px;
+}
