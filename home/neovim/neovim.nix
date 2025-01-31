@@ -37,7 +37,6 @@
       mini.icons
       lualine-nvim
 
-
       nvim-cmp
       cmp-buffer
       cmp-path
@@ -67,7 +66,7 @@
         dev = {
           path = "${pkgs.vimUtils.packDir config.programs.neovim.finalPackage.passthru.packpathDirs}/pack/myNeovimPackages/start",
           patterns = { "catppucin", "goolord", "hrsh7th", "saadparwaiz1", "L3MON4D3", "rafamadriz",
-            "nvim-tree", "neovim", "mfussenegger", "echasnovski", "nvim-lua", "nvim-telescope", 
+            "nvim-tree", "neovim", "mfussenegger", "echasnovski", "nvim-lua", "nvim-telescope",
             "sar", "nvim-lualine",
 
           },
