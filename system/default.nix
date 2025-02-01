@@ -28,6 +28,7 @@
       vesktop
       powerline
       prismlauncher
+      libnotify
 
     ];
     

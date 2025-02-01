@@ -9,11 +9,7 @@
 
 config.home.packages =  with pkgs; [
       martian-mono
-      (nerdfonts.override {
-        fonts = [
-          "NerdFontsSymbolsOnly"
-        ];
-      }) 
+      nerd-fonts.symbols-only
       ubuntu-sans
       noto-fonts
       noto-fonts-cjk-sans

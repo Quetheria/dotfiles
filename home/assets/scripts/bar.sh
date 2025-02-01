@@ -2,6 +2,11 @@
 
 bat=$(< /sys/class/power_supply/BAT0/capacity)
 
+if [ $bat -lt "20" ]; then
+    notify-send "$bat% battery charge the battery!!!!!"
+fi
+
+
 private=$(ip addr show wlp2s0 | grep 'inet ' | awk '{print $2}' | cut -d / -f 1)
 date=$(date +'%Y-%m-%d %X')
 chg=$'Charging\n'

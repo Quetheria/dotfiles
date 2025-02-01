@@ -33,19 +33,19 @@
   mantle = "#181825";
   crust = "#11111b";
 in {
-  programs.mako.enable = true;
+  services.mako.enable = true;
   services.kanshi = {
     enable = true;
-    profiles = {
-      undocked = {
-        outputs = [
+    settings = [
+      { profile.name = "undocked";
+        profile.outputs = [
           {
             criteria = "eDP-1";
           }
         ];
-      };
-      docked = {
-        outputs = [
+      }
+      { profile.name = "docked";
+        profile.outputs = [
           {
             criteria = "eDP-1";
             scale = 1.25;
@@ -56,8 +56,8 @@ in {
             scale = 1.0;
           }
         ];
-      };
-    };
+      }
+    ];
   };
 
   programs.swaylock.enable = true;
