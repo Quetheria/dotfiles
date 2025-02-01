@@ -9,7 +9,7 @@
     XDG_DESKTOP_DIR = "$HOME/";
   };
 
-  programs.firefox = {
+  config.programs.firefox = {
     enable = true;
     profiles.default = {
       isDefault = true;

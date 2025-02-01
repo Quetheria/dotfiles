@@ -6,30 +6,30 @@
   pkgs,
   ...
 }: {
-  home.packages = with pkgs; [
-    (nerdfonts.override {
-      fonts = [
-        "MartainMono"
-        "NerdFontsSymbolsOnly"
-        "Ubuntu"
-      ];
-    })
-    noto-fonts
-    noto-fonts-cjk-sans
-    noto-fonts-emoji
-    liberation-serif
-    fira-code
-    fira-code-symbols
-  ];
 
-  fonts = {
+config.home.packages =  with pkgs; [
+      martian-mono
+      (nerdfonts.override {
+        fonts = [
+          "NerdFontsSymbolsOnly"
+        ];
+      }) 
+      ubuntu-sans
+      noto-fonts
+      noto-fonts-cjk-sans
+      noto-fonts-emoji
+      fira-code
+      fira-code-symbols
+  ];
+  config.fonts = {
+
     fontconfig = {
       enable = true;
       defaultFonts = {
+        emoji = ["Noto Color Emoji"];
+        monospace = ["Martian Mono"];
         sansSerif = ["Ubuntu Nerd Font"];
         serif = ["Liberation Serif"];
-        monospace = ["Martian Mono"];
-        emoji = ["Noto Color Emoji"];
       };
     };
   };

@@ -115,11 +115,6 @@
       };
 
       colors.indexed_colors = {
-        index = 16;
-        color = "#fab387";
-      };
-
-      colors.indexed_colors = {
         index = 17;
         color = "#f5e0dc";
       };

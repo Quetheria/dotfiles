@@ -2,14 +2,14 @@
   description = "system flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
 
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     firefox-addons = {
-      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+      url = "gitlab:rycee/nur-expressions?dirpkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -31,14 +31,14 @@
     pkgs = nixpkgs.legacyPackages.${system};
   in {
     formatter.${system} = pkgs.alejandra;
-    nixosConfigurations.default = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.cessna = nixpkgs.lib.nixosSystem {
       modules = [
         ./system/default.nix
-        inputs.home-manager.nixosModule.default
+        inputs.home-manager.nixosModules.home-manager
         {
-          home-manager.useGlobalPackages = true;
+          home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.cessna = import ./home/home.nix;
+          home-manager.users.cessna = {...}: {imports = [./home/home.nix]; };
           home-manager.extraSpecialArgs = {inherit inputs;};
         }
       ];

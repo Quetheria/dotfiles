@@ -52,8 +52,8 @@ in {
           }
           {
             criteria = "Samsung Electric Company LS27C33xG H9TX704640";
-            postition = "1920,1920";
-            scale = 1;
+            position = "1920,1920";
+            scale = 1.0;
           }
         ];
       };
@@ -62,7 +62,7 @@ in {
 
   programs.swaylock.enable = true;
 
-  programs.sway = {
+  wayland.windowManager.sway = {
     enable = true;
     checkConfig = true;
 
@@ -80,7 +80,7 @@ in {
         {command = "exec swayidle -w \
           timeout 300 'swaylock -f -ue -c 000000 -i ${osConfig.dotfiles.imageDir}/space.jpg' \
           timeout 600 'swaymsg \"output * power off\"' resume 'swaymsg \"output * power on\"' \
-          before-sleep 'swaylock -f -ue -c 000000 -i ${osConfig.dotfilesimageDir}/space.jpg'";}
+          before-sleep 'swaylock -f -ue -c 000000 -i ${osConfig.dotfiles.imageDir}/space.jpg'";}
       ];
 
       # catpuccin-mocha.
@@ -88,35 +88,35 @@ in {
 
       colors = {
         focused = {
-          title = "${lavender}";
+          childBorder = "${lavender}";
           background = "${base}";
           text = "${text}";
           indicator = "${rosewater}";
           border = "${lavender}";
         };
-        focused_inactive = {
-          title = "${overlay0}";
+        focusedInactive = {
+          childBorder = "${overlay0}";
           background = "${base}";
           text = "${text}";
           indicator = "${rosewater}";
           border = "${overlay0}";
         };
         unfocused = {
-          title = "${overlay0}";
+          childBorder = "${overlay0}";
           background = "${base}";
           text = "${text}";
           indicator = "${rosewater}";
           border = "${overlay0}";
         };
         urgent = {
-          title = "${peach}";
+          childBorder = "${peach}";
           background = "${base}";
           text = "${peach}";
           indicator = "${overlay0}";
           border = "${peach}";
         };
         placeholder = {
-          title = "${overlay0}";
+          childBorder = "${overlay0}";
           background = "${base}";
           text = "${text}";
           indicator = "${overlay0}";
@@ -128,34 +128,34 @@ in {
       bars = [
         {
           colors = {
-            background = ${base};
-            statusline = ${text};
-            focusedStatusline = ${text};
-            focusedSeparator = ${base};
+            background = "${base}";
+            statusline = "${text}";
+            focusedStatusline = "${text}";
+            focusedSeparator = "${base}";
 
             focusedWorkspace = {
-              border = ${base};
-              bg = ${mauve};
-              text = ${crust};
+              border = "${base}";
+              background = "${mauve}";
+              text = "${crust}";
             };
             activeWorkspace = {
-              border = ${base};
-              bg = ${surface2};
-              text = ${text};
+              border = "${base}";
+              background = "${surface2}";
+              text = "${text}";
             };
             inactiveWorkspace = {
-              border = ${base};
-              bg = ${base};
-              text = ${text};
+              border = "${base}";
+              background = "${base}";
+              text = "${text}";
             };
             urgentWorkspace = {
-              border = ${base};
-              bg = ${red};
-              text = ${crust};
+              border = "${base}";
+              background = "${red}";
+              text = "${crust}";
             };
           };
 
-          hiddenState = true;
+          hiddenState = "hide";
           mode = "dock";
           position = "bottom";
 
@@ -164,7 +164,7 @@ in {
           trayOutput = "*";
 
           workspaceButtons = true;
-          workspaceNumber = true;
+          workspaceNumbers = true;
         }
       ];
 

@@ -19,9 +19,8 @@
     buildInputs = oldAttrs.buildInputs ++ [pkgs.libsForQt5.kguiaddons];
   });
 in {
-  programs.grim.enable = true;
   services.flameshot = {
     enable = true;
-    package = ${flameshotGrim};
+    package = "${flameshotGrim}";
   };
 }

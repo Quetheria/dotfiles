@@ -5,12 +5,12 @@
   pkgs,
   ...
 }: {
-  packages = with pkgs; [
+  config.home.packages = with pkgs; [
     alejandra
     asm-lsp
     clang-tools_17
     dockerfile-language-server-nodejs
-    java-language-sever
+    java-language-server
     nil
     nodePackages.bash-language-server
     rust-analyzer
@@ -20,7 +20,7 @@
     fd
   ];
 
-  programs.neovim = {
+  config.programs.neovim = {
     enable = true;
     defaultEditor = true;
     vimAlias = true;
@@ -33,14 +33,14 @@
 
       # decorations
       alpha-nvim
-      catppucin-nvim
-      mini.icons
+      catppuccin-nvim
+      mini-icons
       lualine-nvim
 
       nvim-cmp
       cmp-buffer
       cmp-path
-      cmpp_luasnip
+      cmp_luasnip
       cmp-nvim-lsp
       cmp-cmdline
 
@@ -65,7 +65,7 @@
         },
         dev = {
           path = "${pkgs.vimUtils.packDir config.programs.neovim.finalPackage.passthru.packpathDirs}/pack/myNeovimPackages/start",
-          patterns = { "catppucin", "goolord", "hrsh7th", "saadparwaiz1", "L3MON4D3", "rafamadriz",
+          patterns = { "catppuccin", "goolord", "hrsh7th", "saadparwaiz1", "L3MON4D3", "rafamadriz",
             "nvim-tree", "neovim", "mfussenegger", "echasnovski", "nvim-lua", "nvim-telescope",
             "sar", "nvim-lualine",
 
@@ -77,9 +77,10 @@
       require("options")
       require("bindings")
     '';
-    xdg.configFile."nvim/lua" = {
-      recursive = true;
-      source = "${inputs.self.outPath}/home/assets/nvim/lua";
     };
-  };
+
+  config.xdg.configFile."nvim/lua" = {
+    recursive = true;
+    source = "${inputs.self.outPath}/home/assets/nvim/lua";
+  }; 
 }

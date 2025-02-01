@@ -2,9 +2,11 @@
   config,
   pkgs,
   inputs,
+  home-manager,
   ...
 }: {
-  home.username = "cessna";
+
+
   home.homeDirectory = "/home/cessna";
 
   #
@@ -12,20 +14,19 @@
   /*
   The home.stateVersion option does not have a default and must be set
   */
-  home.stateVersion = "18.09";
+  home.stateVersion = "24.11";
   /*
   Here goes the rest of your home-manager config, e.g. home.packages = [ pkgs.foo ];
   */
 
-  import = [
+  imports = [
     ./sway/sway.nix
-    ./games.nix
     ./alacritty/alacritty.nix
     ./fish/fish.nix
     ./neovim/neovim.nix
     ./firefox/firefox.nix
     ./flameshot/flameshot.nix
     ./fonts.nix
-    ./vesktop/vesktop.nix
+    ./powerline/powerline.nix 
   ];
 }
