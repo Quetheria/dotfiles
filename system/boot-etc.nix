@@ -49,7 +49,7 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-  # something depends on this, dont remember what
+  # swaylock
   services.gnome.gnome-keyring.enable = true;
 
   # home manager sway nonsense
@@ -63,7 +63,14 @@
         vt = 2;
       };
       default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd /home/cessna/.config/sway/greet.sh";
+        command = ''
+	export SDL_VIDEODRIVER=wayland
+	export _JAVA_AWT_WM_NONREPARENTING=1
+	export QT_QPA_PLATFORM=wayland
+	export XDG_CURRENT_DESKTOP=sway
+	export XDG_SESSION_DESKTOP=sway
+	${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd 'exec sway'
+	'';
         user = "greeter";
       };
     };

@@ -6,19 +6,17 @@
   pkgs,
   ...
 }: {
-
-config.home.packages =  with pkgs; [
-      martian-mono
-      nerd-fonts.symbols-only
-      ubuntu-sans
-      noto-fonts
-      noto-fonts-cjk-sans
-      noto-fonts-emoji
-      fira-code
-      fira-code-symbols
+  config.home.packages = with pkgs; [
+    martian-mono
+    nerd-fonts.symbols-only
+    ubuntu-sans
+    noto-fonts
+    noto-fonts-cjk-sans
+    noto-fonts-emoji
+    fira-code
+    fira-code-symbols
   ];
   config.fonts = {
-
     fontconfig = {
       enable = true;
       defaultFonts = {

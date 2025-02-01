@@ -23,6 +23,7 @@
     };
 
     interactiveShellInit = ''
+      set fish_function_path $fish_function_path "/usr/share/powerline/bindings/fish"
       set EDITOR nvim
       set -g fish_greeting
       powerline-setup

@@ -5,8 +5,6 @@
   pkgs,
   ...
 }: {
-  
-
   #programs.powerline.enable = true;
   # powerline go doesn't work on fish
   # and vanilla powerline cant be configured with hm

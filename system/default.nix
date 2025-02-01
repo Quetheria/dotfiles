@@ -5,8 +5,6 @@
   inputs,
   ...
 }: {
-
-
   programs.fish.enable = true;
   users.users.cessna = {
     isNormalUser = true;
@@ -15,6 +13,8 @@
     shell = pkgs.fish;
 
     packages = with pkgs; [
+      ripgrep
+      git
       grim
       fish
       firefox
@@ -24,23 +24,20 @@
       busybox
       toybox
       bat
+      light
       eza
       vesktop
       powerline
       prismlauncher
       libnotify
-
     ];
-    
   };
-  
-         
+
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true;
     dedicatedServer.openFirewall = true;
   };
-
 
   imports = [
     ./options.nix
@@ -55,5 +52,4 @@
     # lower level things grub etc + random config suff
     ./boot-etc.nix
   ];
-
 }

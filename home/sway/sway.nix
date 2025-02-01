@@ -1,8 +1,8 @@
 {
   config,
-  osConfig,
   options,
   lib,
+  inputs,
   pkgs,
   ...
 }: let
@@ -33,18 +33,23 @@
   mantle = "#181825";
   crust = "#11111b";
 in {
+	
+	
+
   services.mako.enable = true;
   services.kanshi = {
     enable = true;
     settings = [
-      { profile.name = "undocked";
+      {
+        profile.name = "undocked";
         profile.outputs = [
           {
             criteria = "eDP-1";
           }
         ];
       }
-      { profile.name = "docked";
+      {
+        profile.name = "docked";
         profile.outputs = [
           {
             criteria = "eDP-1";
@@ -59,9 +64,10 @@ in {
       }
     ];
   };
-
+  
+  programs.rofi.enable = true;
   programs.swaylock.enable = true;
-
+  
   wayland.windowManager.sway = {
     enable = true;
     checkConfig = true;
@@ -69,18 +75,15 @@ in {
     config = {
       modifier = "Mod4";
       terminal = "alacritty";
-
+      menu = "${pkgs.rofi}/bin/rofi";
       startup = [
         {command = "exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK";}
 
         {command = "exec mako";}
-        {command = "exec hash dbus-update-activation-environment 2>/dev/null && \
-              dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK";}
 
-        {command = "exec swayidle -w \
-          timeout 300 'swaylock -f -ue -c 000000 -i ${osConfig.dotfiles.imageDir}/space.jpg' \
-          timeout 600 'swaymsg \"output * power off\"' resume 'swaymsg \"output * power on\"' \
-          before-sleep 'swaylock -f -ue -c 000000 -i ${osConfig.dotfiles.imageDir}/space.jpg'";}
+        # this was for something in my original config, but it fails the build now
+        #      {command = "exec hash dbus-update-activation-environment 2>/dev/null && \
+        #              dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK";}
       ];
 
       # catpuccin-mocha.
@@ -160,7 +163,7 @@ in {
           position = "bottom";
 
           command = "\${pkgs.swaybar}/bin/swaybar";
-          statusCommand = "while ${osConfig.dotfiles.scriptDir}/bar.sh; do sleep 7; done";
+          statusCommand = "while /home/cessna/.config/sway/bar.sh; do sleep 7; done";
           trayOutput = "*";
 
           workspaceButtons = true;
@@ -176,7 +179,7 @@ in {
 
           "${modifier}+Shift+q" = "kill";
 
-          "${modifier}+l" = "exec swaylock -ue -i ${osConfig.dotfiles.imageDir}/space.jpg";
+          "${modifier}+l" = "exec swaylock -ue -i /home/cessna/.config/sway/space.jpg";
 
           "${modifier}+m" = "${config.wayland.windowManager.sway.config.menu}";
 
@@ -198,5 +201,27 @@ in {
           "${modifier}+Shift+D" = "move right";
         };
     };
+  };
+
+  services.swayidle = {
+    enable = true;
+    events = [
+      {
+        event = "before-sleep";
+        command = "swaylock -f -ue -c 000000 -i /home/cessna/.config/sway/space.jpg'";
+      }
+    ];
+
+    timeouts = [
+      {
+        timeout = 300;
+        command = "'swaylock -f -ue -c 000000 -i /home/cessna/.config/sway/space.jpg'";
+      }
+      {
+        timeout = 600;
+        command = "swaymsg 'output * power off'";
+        resumeCommand = "swaymsg 'output * power on'";
+      }
+    ];
   };
 }

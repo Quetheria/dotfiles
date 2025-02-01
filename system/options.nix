@@ -23,23 +23,32 @@ in {
 
   options = {
     dotfiles = {
-      dir = lib.mkOption {type = types.path;
-            default = (removePrefix "/mnt"
-        (findFirst pathExists (toString ../../.) [
-          "/mnt/etc/dotfiles"
-          "/etc/dotfiles"
-          "/home/cessna/dotfiles"
-        ]));
-            description = "Directory of the dotfiles";};
-      assetDir = lib.mkOption {type = types.path; 
-            default = "${config.dotfiles.dir}/home/assets";
-            description = "Path to Assets";};
-      scriptDir = lib.mkOption {type = types.path; 
-            default = "${config.dotfiles.dir}/home/assets/scripts";
-            description =  "Path to scripts";};
-      imageDir = lib.mkOption {type = types.path;
-            default = "${config.dotfiles.dir}/home/assets/images";
-            description = "Path to images";};
+      dir = lib.mkOption {
+        type = types.path;
+        default =
+          removePrefix "/mnt"
+          (findFirst pathExists (toString ../../.) [
+            "/mnt/etc/dotfiles"
+            "/etc/dotfiles"
+            "/home/cessna/dotfiles"
+          ]);
+        description = "Directory of the dotfiles";
+      };
+      assetDir = lib.mkOption {
+        type = types.path;
+        default = "${config.dotfiles.dir}/home/assets";
+        description = "Path to Assets";
+      };
+      scriptDir = lib.mkOption {
+        type = types.path;
+        default = "${config.dotfiles.dir}/home/assets/scripts";
+        description = "Path to scripts";
+      };
+      imageDir = lib.mkOption {
+        type = types.path;
+        default = "${config.dotfiles.dir}/home/assets/images";
+        description = "Path to images";
+      };
     };
   };
 }
