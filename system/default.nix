@@ -22,7 +22,7 @@
       steam-run
       htop
       busybox
-      toybox
+      file
       bat
       light
       eza

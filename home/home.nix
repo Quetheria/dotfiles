@@ -22,7 +22,7 @@
       enable = true;
       executable = false;
       source = /home/cessna/dotfiles/home/assets/images/space.jpg;
-      target  = ".config/sway/space.jpg";
+      target = ".config/sway/space.jpg";
     };
 
     bar = {
@@ -33,10 +33,10 @@
     };
 
     greet = {
- 	enable = true;
-	executable = true;
-	source = /home/cessna/dotfiles/home/assets/scripts/bar.sh;
-	target = ".config/sway/greet.sh";
+      enable = true;
+      executable = true;
+      source = /home/cessna/dotfiles/home/assets/scripts/bar.sh;
+      target = ".config/sway/greet.sh";
     };
   };
 

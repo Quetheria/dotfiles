@@ -33,9 +33,6 @@
   mantle = "#181825";
   crust = "#11111b";
 in {
-	
-	
-
   services.mako.enable = true;
   services.kanshi = {
     enable = true;
@@ -64,10 +61,10 @@ in {
       }
     ];
   };
-  
+
   programs.rofi.enable = true;
   programs.swaylock.enable = true;
-  
+
   wayland.windowManager.sway = {
     enable = true;
     checkConfig = true;
@@ -75,7 +72,7 @@ in {
     config = {
       modifier = "Mod4";
       terminal = "alacritty";
-      menu = "${pkgs.rofi}/bin/rofi";
+      menu = "${pkgs.rofi}/bin/rofi -show drun";
       startup = [
         {command = "exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK";}
 
@@ -177,13 +174,16 @@ in {
         lib.mkOptionDefault {
           "Ctrl+Alt+t" = "exec ${config.wayland.windowManager.sway.config.terminal}";
 
+          "${modifier}+D" = "focus right";
+          "${modifier}+W" = "focus up";
+
           "${modifier}+Shift+q" = "kill";
 
-          "${modifier}+l" = "exec swaylock -ue -i /home/cessna/.config/sway/space.jpg";
+          "${modifier}+L" = "exec swaylock -ue -i /home/cessna/.config/sway/space.jpg";
 
-          "${modifier}+m" = "${config.wayland.windowManager.sway.config.menu}";
+          "${modifier}+M" = "${config.wayland.windowManager.sway.config.menu}";
 
-          "${modifier}+Shift+c" = "reload";
+          "${modifier}+Shift+C" = "reload";
 
           "Print" = "exec flameshot launcher";
 

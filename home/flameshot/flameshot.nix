@@ -9,7 +9,7 @@
     src = pkgs.fetchFromGitHub {
       owner = "flameshot-org";
       repo = "flameshot";
-      rev = "3d21e4967b68e9ce80fb2238857aa1bf12c7b905";
+      rev = "119df557f5947a57425fc926baffcf26fed5f117";
       sha256 = "sha256-OLRtF/yjHDN+sIbgilBZ6sBZ3FO6K533kFC1L2peugc=";
     };
     cmakeFlags = [
@@ -22,5 +22,14 @@ in {
   services.flameshot = {
     enable = true;
     package = "${flameshotGrim}";
+
+    settings = {
+    	General = {
+          contrastOpacity = 188;
+          filenamePattern = "%Y-%m-%d_%H-%M-%S";
+          savePath = "/home/cessna/Pictures/screenshots";
+          disabledGrimWarning = true;
+      };
+    };
   };
 }

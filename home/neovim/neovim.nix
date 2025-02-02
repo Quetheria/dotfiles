@@ -27,69 +27,64 @@
     ];
     plugins = with pkgs.vimPlugins; [
       lazy-nvim
+      which-key-nvim
+      LazyVim
+      # decorations
+      alpha-nvim
+      catppuccin-nvim
+      mini-icons
+      lualine-nvim
+
+      nvim-cmp
+      cmp-buffer
+      cmp-path
+      cmp_luasnip
+      cmp-nvim-lsp
+      cmp-cmdline
+
+      #snip
+      luasnip
+      friendly-snippets
+
+      # linting
+      nvim-lspconfig
+      nvim-lint
+
+      telescope-nvim
+      plenary-nvim
     ];
+    extraLuaConfig = ''
+           vim.g.mapleader = " " -- Need to set leader before lazy for correct keybindings
+           require("lazy").setup({
+             spec = {
+               -- import your plugins
+               { import = "plugins" },
+             },
+      performance = {
+               reset_packpath = false,
+               rtp = {
+                   reset = false,
+               }
+             },
 
-    extraLuaConfig = let
-      plugins = with pkgs.vimPlugins; [
-        which-key-nvim
-        LazyVim
-        # decorations
-        alpha-nvim
-        catppuccin-nvim
-        mini-icons
-        lualine-nvim
+             dev = {
+      	path = "${pkgs.vimUtils.packDir config.programs.neovim.finalPackage.passthru.packpathDirs}/pack/myNeovimPackages/start",
+               patterns = { "catppuccin", "goolord", "hrsh7th", "saadparwaiz1", "L3MON4D3", "rafamadriz",
+                 "nvim-tree", "neovim", "mfussenegger", "echasnovski", "nvim-lua", "nvim-telescope",
+                 "sar", "nvim-lualine",
 
-        nvim-cmp
-        cmp-buffer
-        cmp-path
-        cmp_luasnip
-        cmp-nvim-lsp
-        cmp-cmdline
+               },
+             },
+             install = { missing = false, },
 
-        #snip
-        luasnip
-        friendly-snippets
-
-        # linting
-        nvim-lspconfig
-        nvim-lint
-
-        telescope-nvim
-        plenary-nvim
-      ];
-
-      mkEntryFromDrv = drv:
-        if lib.isDerivation drv
-        then {
-          name = "${lib.getName drv}";
-          path = drv;
-        }
-        else drv;
-      lazyPath = pkgs.linkFarm "lazy-plugins" (builtins.map mkEntryFromDrv plugins);
-    in ''
-      require("lazy").setup({
-        spec = {
-          -- import your plugins
-          { import = "plugins" },
-        },
-        dev = {
-          path = "${lazyPath}",
-          patterns = { "catppuccin", "goolord", "hrsh7th", "saadparwaiz1", "L3MON4D3", "rafamadriz",
-            "nvim-tree", "neovim", "mfussenegger", "echasnovski", "nvim-lua", "nvim-telescope",
-            "sar", "nvim-lualine",
-
-          },
-        },
-        install = { missing = false, },
-
-      })
-      require("options")
-      require("bindings")
+           })
+           require("options")
+           require("bindings")
     '';
   };
 
   config.xdg.configFile."nvim/lua" = {
     recursive = true;
-    source = "${inputs.self.outPath}/.config/nvim/lua";
+    source = "${inputs.self.outPath}/.config/nvim/lua/";
   };
 }
