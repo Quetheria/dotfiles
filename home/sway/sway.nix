@@ -159,7 +159,7 @@ in {
           mode = "dock";
           position = "bottom";
 
-          command = "${pkgs.swaybar}/bin/swaybar";
+          command = "${pkgs.swayrbar}/bin/swayrbar";
           statusCommand = "while /home/cessna/.config/sway/bar.sh; do sleep 7; done";
           trayOutput = "*";
 
@@ -168,7 +168,7 @@ in {
         }
       ];
 
-      # this mkOption is case sensitive 
+      # this mkOption is case sensitive
       keybindings = let
         modifier = config.wayland.windowManager.sway.config.modifier;
       in

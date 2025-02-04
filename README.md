@@ -19,3 +19,4 @@ TODO:
 
 git bisect and figure out kvm issue
 
+figure out lua path errors for lazy-nvim

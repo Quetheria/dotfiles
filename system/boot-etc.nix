@@ -57,7 +57,7 @@
   programs.sway.package = null;
   systemd.services.greetd = {
     unitConfig = {
-      After = lib.mkOverride 0 [ "multi-user.target" ];
+      After = lib.mkOverride 0 ["multi-user.target"];
     };
     serviceConfig = {
       Type = "idle";
