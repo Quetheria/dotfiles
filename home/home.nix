@@ -35,7 +35,7 @@
     greet = {
       enable = true;
       executable = true;
-      source = /home/cessna/dotfiles/home/assets/scripts/bar.sh;
+      source = /home/cessna/dotfiles/home/assets/scripts/greet.sh;
       target = ".config/sway/greet.sh";
     };
   };

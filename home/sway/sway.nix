@@ -159,8 +159,8 @@ in {
           mode = "dock";
           position = "bottom";
 
-          command = "\${pkgs.swaybar}/bin/swaybar";
-          statusCommand = "while /home/cessna/.config/sway/bar.sh; do sleep 7; done";
+          command = "${pkgs.swaybar}/bin/swaybar";
+          statusCommand = "while /home/cessna/.config/sway/bar.sh; do sleep 7; done;";
           trayOutput = "*";
 
           workspaceButtons = true;
@@ -168,22 +168,24 @@ in {
         }
       ];
 
+
+      # this mkOption is case sensitive 
       keybindings = let
         modifier = config.wayland.windowManager.sway.config.modifier;
       in
         lib.mkOptionDefault {
           "Ctrl+Alt+t" = "exec ${config.wayland.windowManager.sway.config.terminal}";
 
-          "${modifier}+D" = "focus right";
-          "${modifier}+W" = "focus up";
+          "${modifier}+d" = "focus right";
+          "${modifier}+w" = "focus up";
 
           "${modifier}+Shift+q" = "kill";
 
-          "${modifier}+L" = "exec swaylock -ue -i /home/cessna/.config/sway/space.jpg";
+          "${modifier}+l" = "exec swaylock -ue -i /home/cessna/.config/sway/space.jpg";
 
-          "${modifier}+M" = "${config.wayland.windowManager.sway.config.menu}";
+          "${modifier}+m" = "${config.wayland.windowManager.sway.config.menu}";
 
-          "${modifier}+Shift+C" = "reload";
+          "${modifier}+Shift+c" = "reload";
 
           "Print" = "exec flameshot launcher";
 
@@ -192,13 +194,13 @@ in {
 
           "${modifier}+Shift+e" = "exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'";
 
-          "${modifier}+Ctrl+D" = "workspace next";
-          "${modifier}+Ctrl+A" = "workspace prev";
+          "${modifier}+Ctrl+d" = "workspace next";
+          "${modifier}+Ctrl+a" = "workspace prev";
 
-          "${modifier}+Shift+A" = "move left";
-          "${modifier}+Shift+S" = "move down";
-          "${modifier}+Shift+W" = "move up";
-          "${modifier}+Shift+D" = "move right";
+          "${modifier}+Shift+a" = "move left";
+          "${modifier}+Shift+s" = "move down";
+          "${modifier}+Shift+w" = "move up";
+          "${modifier}+Shift+d" = "move right";
         };
     };
   };
