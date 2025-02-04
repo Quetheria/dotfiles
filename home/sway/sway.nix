@@ -42,6 +42,7 @@ in {
         profile.outputs = [
           {
             criteria = "eDP-1";
+	    scale = 1.0;
           }
         ];
       }
@@ -51,10 +52,11 @@ in {
           {
             criteria = "eDP-1";
             scale = 1.25;
+	    position = "1920,0";
           }
           {
             criteria = "Samsung Electric Company LS27C33xG H9TX704640";
-            position = "1920,1920";
+            position = "0,0";
             scale = 1.0;
           }
         ];
@@ -68,6 +70,22 @@ in {
   wayland.windowManager.sway = {
     enable = true;
     checkConfig = true;
+    
+    extraConfig = ''
+    output * bg ~/.config/sway/space.jpg fill
+    '';
+	
+    extraSessionCommands = ''
+          export NIXOS_OZONE_WL=1
+          export MOZ_ENABLE_WAYLAND=1
+          export QT_QPA_PLATFORM=wayland-egl
+          export QT_AUTO_SCREEN_SCALE_FACTOR=1 
+          export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+          export _JAWA_AWT_WM_NONREPARENTING=1
+          export DESKTOP_SESSION=sway
+          export XDG_CURRENT_DESKTOP=sway
+          export XDG_SESSION_TYPE=sway
+	'';
 
     config = {
       modifier = "Mod4";
@@ -77,6 +95,8 @@ in {
         {command = "exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK";}
 
         {command = "exec mako";}
+
+	{command = "exec swaybar --bar_id 'bar-0'";}
 
         # this was for something in my original config, but it fails the build now
         #      {command = "exec hash dbus-update-activation-environment 2>/dev/null && \
