@@ -160,14 +160,13 @@ in {
           position = "bottom";
 
           command = "${pkgs.swaybar}/bin/swaybar";
-          statusCommand = "while /home/cessna/.config/sway/bar.sh; do sleep 7; done;";
+          statusCommand = "while /home/cessna/.config/sway/bar.sh; do sleep 7; done";
           trayOutput = "*";
 
           workspaceButtons = true;
           workspaceNumbers = true;
         }
       ];
-
 
       # this mkOption is case sensitive 
       keybindings = let

@@ -24,11 +24,10 @@ in {
     package = "${flameshotGrim}";
 
     settings = {
-    	General = {
-          contrastOpacity = 188;
-          filenamePattern = "%Y-%m-%d_%H-%M-%S";
-          savePath = "/home/cessna/Pictures/screenshots";
-          disabledGrimWarning = true;
+      General = {
+        contrastOpacity = 188;
+        filenamePattern = "%Y-%m-%d_%H-%M-%S";
+        savePath = "/home/cessna/Pictures/screenshots";
       };
     };
   };
