@@ -74,7 +74,7 @@ in {
     #checkConfig = true;
 
     extraConfig = ''
-      output * bg /home/cessna/.config/sway/space.jpg fill
+      output * bg ${../assets/images/space.jpg} fill
     '';
 
     extraSessionCommands = ''
@@ -182,7 +182,7 @@ in {
           position = "bottom";
 
           command = "${pkgs.swayrbar}/bin/swayrbar";
-          statusCommand = "while /home/cessna/.config/sway/bar.sh; do sleep 7; done";
+          statusCommand = "while ${../assets/scripts/bar.sh}; do sleep 7; done";
           trayOutput = "*";
 
           workspaceButtons = true;
@@ -202,7 +202,7 @@ in {
 
           "${modifier}+Shift+q" = "kill";
 
-          "${modifier}+l" = "exec swaylock -ue -i /home/cessna/.config/sway/space.jpg";
+          "${modifier}+l" = "exec swaylock -ue -i ${../assets/images/space.jpg}";
 
           "${modifier}+m" = "${config.wayland.windowManager.sway.config.menu}";
 
@@ -231,14 +231,14 @@ in {
     events = [
       {
         event = "before-sleep";
-        command = "swaylock -f -ue -c 000000 -i /home/cessna/.config/sway/space.jpg'";
+        command = "swaylock -f -ue -c 000000 -i ${../assets/images/space.jpg}";
       }
     ];
 
     timeouts = [
       {
         timeout = 300;
-        command = "'swaylock -f -ue -c 000000 -i /home/cessna/.config/sway/space.jpg'";
+        command = "swaylock -f -ue -c 000000 -i ${../assets/images/space.jpg}";
       }
       {
         timeout = 600;
