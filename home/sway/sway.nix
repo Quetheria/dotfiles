@@ -72,7 +72,7 @@ in {
     checkConfig = true;
 
     extraConfig = ''
-      output * bg ~/.config/sway/space.jpg fill
+      output * bg /home/cessna/.config/sway/space.jpg fill
     '';
 
     extraSessionCommands = ''
