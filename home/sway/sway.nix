@@ -69,7 +69,9 @@ in {
 
   wayland.windowManager.sway = {
     enable = true;
-    checkConfig = true;
+
+    # possibly fails the build as space.jpg doesn't exist at  buildtime?
+    #checkConfig = true;
 
     extraConfig = ''
       output * bg /home/cessna/.config/sway/space.jpg fill
