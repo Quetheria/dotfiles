@@ -21,7 +21,6 @@
       neovim
       steam-run
       htop
-      busybox
       file
       bat
       light
@@ -33,12 +32,6 @@
     ];
   };
 
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true;
-    dedicatedServer.openFirewall = true;
-  };
-
   imports = [
     ./options.nix
     ./hardware-configuration.nix
@@ -48,7 +41,7 @@
     ./sound.nix
     # docker virtualbox, etc
     ./virtualization.nix
-
+    ./games.nix
     # lower level things grub etc + random config suff
     ./boot-etc.nix
   ];

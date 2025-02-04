@@ -204,7 +204,7 @@ in {
 
           "${modifier}+l" = "exec swaylock -ue -i ${../assets/images/space.jpg}";
 
-          "${modifier}+m" = "${config.wayland.windowManager.sway.config.menu}";
+          "${modifier}+m" = "exec ${config.wayland.windowManager.sway.config.menu}";
 
           "${modifier}+Shift+c" = "reload";
 
